@@ -1,0 +1,14 @@
+.list {
+  width: 948px;
+  margin: 0 auto;
+  padding: 0 15px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.item {
+  flex-basis: calc(100% / 5 - 40px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
