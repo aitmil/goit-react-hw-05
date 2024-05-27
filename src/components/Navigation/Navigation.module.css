@@ -1,13 +1,13 @@
 .header {
   padding: 12px 0 12px;
-  background-color: #38220f;
+  background-color: #313349;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .nav {
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 56px;
 }
 
 .link {
@@ -17,6 +17,6 @@
 }
 
 .active {
-  color: #dbc1ac;
+  color: #dddd2d;
   text-decoration: underline;
 }
