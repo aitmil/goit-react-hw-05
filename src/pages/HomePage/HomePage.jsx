@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import getMoviesList from "../../movies-api";
 import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
 import css from "./HomePage.module.css";
 
 export default function HomePage() {
@@ -27,6 +28,8 @@ export default function HomePage() {
     <main>
       <h1 className={css.title}>Trending Movies</h1>
       <MovieList movies={movies} />
+      {isLoading && <Loader />}
+      <Toaster />
     </main>
   );
 }
