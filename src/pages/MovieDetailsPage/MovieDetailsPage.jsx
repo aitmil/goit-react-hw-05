@@ -1,12 +1,7 @@
 import { useEffect, useState, useRef, Suspense } from "react";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { HiArrowLeft } from "react-icons/hi";
 
 import { getMovieDetails } from "../../movies-api";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
@@ -17,8 +12,10 @@ import css from "./MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
-  const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state ?? "/movies";
 
   useEffect(() => {
     async function fetchMovieById() {
@@ -39,15 +36,21 @@ export default function MovieDetailsPage() {
   console.log(movieId);
 
   return (
-    <div className={css.container}>
+    <main className={css.container}>
+      <Link to={backLinkHref} className={css.backLink}>
+        <HiArrowLeft /> Back to movies
+      </Link>
       {isLoading && <Loader />}
       <MovieInfo movie={movie} />
-      <Link to="/movies/:movieId/cast">
+      <Link to="cast">
         <MovieCast />
       </Link>
-      <Link to="/movies/:movieId/reviews">
+      <Link to="reviews">
         <MovieReviews />
       </Link>
-    </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </main>
   );
 }
