@@ -1,0 +1,27 @@
+.infoWrapper {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.info {
+  border: 1px solid #3d1028;
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.title,
+.score,
+.text {
+  margin-bottom: 24px;
+}
+
+.title {
+  color: #ff7f50;
+}
+
+.subtitle {
+  margin-bottom: 12px;
+}

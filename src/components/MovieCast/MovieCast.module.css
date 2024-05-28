@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.item {
+  width: 150px;
+}
+
+.img {
+  object-fit: cover;
+  height: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 12px;
+}
+
+.character {
+  font-size: smaller;
+  color: rgba(61, 16, 40, 0.7);
+}
