@@ -23,18 +23,13 @@ export const getMovieDetails = async (movieId) => {
   const response = await axios.get(`/3/movie/${movieId}?language=EN`);
   return response.data;
 };
-console.log(getMovieDetails(5));
 
 export const getMovieCredits = async (movieId) => {
-  const response = await axios.get("/3/movie/movie_id/credits?language=EN", {
-    params: { movie_id: movieId },
-  });
+  const response = await axios.get(`/3/movie/${movieId}/credits?language=EN`);
   return response.data;
 };
 
 export const getMoviesReviews = async (movieId) => {
-  const response = await axios.get("/3/movie/movie_id/reviews?language=EN", {
-    params: { movie_id: movieId },
-  });
+  const response = await axios.get(`/3/movie/${movieId}/reviews?language=EN`);
   return response.data;
 };
