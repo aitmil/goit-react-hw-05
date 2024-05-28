@@ -1,7 +1,14 @@
 import { useEffect, useState, useRef, Suspense } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import toast from "react-hot-toast";
 import { HiArrowLeft } from "react-icons/hi";
+import clsx from "clsx";
 
 import { getMovieDetails } from "../../movies-api";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
@@ -15,12 +22,12 @@ export default function MovieDetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state ?? "/movies";
+  const backLinkHref = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     async function fetchMovieById() {
-      setIsLoading(true);
       try {
+        setIsLoading(true);
         const data = await getMovieDetails(movieId);
         setMovie(data);
       } catch (error) {
@@ -32,25 +39,40 @@ export default function MovieDetailsPage() {
     fetchMovieById();
   }, [movieId]);
 
-  console.log(movie);
-  console.log(movieId);
+  const getLinkClass = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
 
   return (
-    <main className={css.container}>
-      <Link to={backLinkHref} className={css.backLink}>
-        <HiArrowLeft /> Back to movies
+    <section className={css.container}>
+      <Link to={backLinkHref.current} className={css.backLink}>
+        <HiArrowLeft /> Go back
       </Link>
       {isLoading && <Loader />}
-      <MovieInfo movie={movie} />
-      <Link to="cast">
-        <MovieCast />
-      </Link>
-      <Link to="reviews">
-        <MovieReviews />
-      </Link>
-      <Suspense fallback={<Loader />}>
+      {movie && <MovieInfo movie={movie} />}
+      <ul className={css.listLinks}>
+        <li className={css.itemLink}>
+          <NavLink
+            className={getLinkClass}
+            to="cast"
+            state={{ ...location.state }}
+          >
+            Cast
+          </NavLink>
+        </li>
+        <li className={css.itemLink}>
+          <NavLink
+            className={getLinkClass}
+            to="reviews"
+            state={{ ...location.state }}
+          >
+            Reviews
+          </NavLink>
+        </li>
+      </ul>
+      <Suspense fallback={isLoading && <Loader />}>
         <Outlet />
       </Suspense>
-    </main>
+    </section>
   );
 }

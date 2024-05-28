@@ -10,9 +10,9 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchMovies() {
-      setIsLoading(true);
+    const fetchMovies = async () => {
       try {
+        setIsLoading(true);
         const { results } = await getMoviesList();
         setMovies(results);
       } catch (error) {
@@ -20,16 +20,16 @@ export default function HomePage() {
       } finally {
         setIsLoading(false);
       }
-    }
+    };
     fetchMovies();
   }, []);
 
   return (
-    <main>
+    <section>
       <h1 className={css.title}>Trending Movies Today</h1>
       <MovieList movies={movies} />
       {isLoading && <Loader />}
       <Toaster />
-    </main>
+    </section>
   );
 }

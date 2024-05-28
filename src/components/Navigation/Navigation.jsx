@@ -6,6 +6,7 @@ export const Navigation = () => {
   const getLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
+
   return (
     <header className={css.header}>
       <nav className={css.nav}>
