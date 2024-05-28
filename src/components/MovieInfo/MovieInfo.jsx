@@ -8,6 +8,7 @@ export default function MovieInfo({ movie }) {
   return (
     <div className={css.infoWrapper}>
       <img
+        className={css.img}
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`

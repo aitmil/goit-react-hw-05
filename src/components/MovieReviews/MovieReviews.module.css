@@ -1,0 +1,35 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.item {
+  flex-basis: calc(100% / 3 - 24px);
+  height: 300px;
+  border: 1px solid #3d1028;
+  border-radius: 8px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.author {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.img {
+  object-fit: cover;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.text {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3d1028 #e4d2dc;
+  height: 214px;
+}
