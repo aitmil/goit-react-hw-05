@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <h1 className={css.title}>Trending Movies</h1>
+      <h1 className={css.title}>Trending Movies Today</h1>
       <MovieList movies={movies} />
       {isLoading && <Loader />}
       <Toaster />
