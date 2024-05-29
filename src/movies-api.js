@@ -13,8 +13,7 @@ export default async function getMoviesList() {
 
 export const searchMovies = async (query) => {
   const response = await axios.get(
-    "/3/search/movie?include_adult=true&language=EN",
-    { params: { query: query } }
+    `/3/search/movie?query=${query}&include_adult=true&language=EN`
   );
   return response.data;
 };

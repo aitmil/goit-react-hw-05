@@ -4,7 +4,7 @@ import css from "./SearchBar.module.css";
 
 export default function SearchBar({ filter, onSearch }) {
   return (
-    <form className={css.form}>
+    <form onSubmit={onSearch} className={css.form}>
       <button type="submit" className={css.btn}>
         <MdSearch size={24} />
       </button>
