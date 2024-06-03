@@ -18,6 +18,8 @@ export const searchMovies = async (query) => {
   return response.data;
 };
 
+console.log(searchMovies("hello"));
+
 export const getMovieDetails = async (movieId) => {
   const response = await axios.get(`/3/movie/${movieId}?language=EN`);
   return response.data;

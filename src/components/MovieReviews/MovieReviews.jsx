@@ -18,7 +18,9 @@ export default function MovieReviews() {
         const data = await getMoviesReviews(movieId);
         setMovieReviews(data.results);
       } catch (error) {
-        toast("Whoops. Something went wrong! Please try to reload this page!");
+        toast.error(
+          "Whoops. Something went wrong! Please try to reload this page!"
+        );
       } finally {
         setIsLoading(false);
       }

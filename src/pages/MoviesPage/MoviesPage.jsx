@@ -11,7 +11,6 @@ import css from "./MoviesPage.module.css";
 export default function MoviesPage() {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchFilter = searchParams.get("searchFilter") ?? "";
 
@@ -21,45 +20,44 @@ export default function MoviesPage() {
       try {
         setIsLoading(true);
         const data = await searchMovies(searchFilter);
-        setFilteredMovies(data);
+        setFilteredMovies(data.results);
         if (!data.results.length) {
-          setIsError(true);
           toast.error(
             "There are no movies with this request. Please, try again"
           );
           return;
         }
       } catch (error) {
-        setIsError(true);
-        toast("Whoops. Something went wrong! Please try to reload this page!");
+        toast.error(
+          "Whoops. Something went wrong! Please try to reload this page!"
+        );
       } finally {
         setIsLoading(false);
-        setIsError(false);
       }
     };
     fetchFilteredMovies();
   }, [searchFilter]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newSearchFilter = e.currentTarget.elements.movieName.value.trim();
-    if (!newSearchFilter) {
-      toast.error("Please enter a keyword!");
-      return;
-    }
-    setSearchParams({ searchFilter: newSearchFilter });
-    e.currentTarget.reset();
+  const changeSearchFilter = (newSearchFilter) => {
+    searchParams.set("searchFilter", newSearchFilter);
+    setSearchParams(searchParams);
   };
 
   return (
     <main className={css.container}>
-      <SearchBar onSearch={handleSubmit} />
+      <SearchBar filter={searchFilter} onSearch={changeSearchFilter} />
       {isLoading && <Loader />}
-      {isError && (
-        <p>There is no movies with this request. Please, try again</p>
-      )}
       <MovieList movies={filteredMovies} />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            padding: "16px",
+            color: "red",
+            marginTop: "135px",
+            textAlign: "center",
+          },
+        }}
+      />
     </main>
   );
 }

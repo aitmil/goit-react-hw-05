@@ -4,10 +4,8 @@ import css from "./SearchBar.module.css";
 
 export default function SearchBar({ filter, onSearch }) {
   return (
-    <form onSubmit={onSearch} className={css.form}>
-      <button type="submit" className={css.btn}>
-        <MdSearch size={24} />
-      </button>
+    <div className={css.wrapper}>
+      <MdSearch size={24} className={css.icon} />
       <input
         className={css.input}
         autoComplete="off"
@@ -16,6 +14,6 @@ export default function SearchBar({ filter, onSearch }) {
         value={filter}
         onChange={(e) => onSearch(e.target.value)}
       />
-    </form>
+    </div>
   );
 }

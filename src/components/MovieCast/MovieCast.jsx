@@ -18,7 +18,9 @@ export default function MovieCast() {
         const data = await getMovieCredits(movieId);
         setMovieCast(data.cast);
       } catch (error) {
-        toast("Whoops. Something went wrong! Please try to reload this page!");
+        toast.error(
+          "Whoops. Something went wrong! Please try to reload this page!"
+        );
       } finally {
         setIsLoading(false);
       }
@@ -51,7 +53,15 @@ export default function MovieCast() {
             </li>
           ))}
       </ul>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            padding: "16px",
+            marginTop: "135px",
+            textAlign: "center",
+          },
+        }}
+      />
     </>
   );
 }

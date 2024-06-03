@@ -29,7 +29,16 @@ export default function HomePage() {
       <h1 className={css.title}>Trending Movies Today</h1>
       <MovieList movies={movies} />
       {isLoading && <Loader />}
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            padding: "16px",
+            color: "red",
+            marginTop: "135px",
+            textAlign: "center",
+          },
+        }}
+      />
     </section>
   );
 }
