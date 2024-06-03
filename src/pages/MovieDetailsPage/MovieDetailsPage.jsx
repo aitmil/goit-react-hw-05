@@ -44,7 +44,7 @@ export default function MovieDetailsPage() {
   };
 
   return (
-    <section className={css.container}>
+    <main className={css.container}>
       <Link to={backLinkHref.current} className={css.backLink}>
         <HiArrowLeft /> Go back
       </Link>
@@ -73,6 +73,6 @@ export default function MovieDetailsPage() {
       <Suspense fallback={isLoading && <Loader />}>
         <Outlet />
       </Suspense>
-    </section>
+    </main>
   );
 }

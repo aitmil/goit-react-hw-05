@@ -8,7 +8,7 @@
 
 .backLink {
   padding: 8px;
-  width: 105px;
+  width: 120px;
   border: 1px solid #3d1028;
   border-radius: 8px;
   text-align: start;
@@ -25,7 +25,7 @@
 .backLink:hover {
   color: #ff7f50;
   background-color: #e4d2dc;
-  border: transparent;
+  border: 1px solid transparent;
 }
 
 .listLinks {

@@ -25,7 +25,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <section>
+    <main>
       <h1 className={css.title}>Trending Movies Today</h1>
       <MovieList movies={movies} />
       {isLoading && <Loader />}
@@ -39,6 +39,6 @@ export default function HomePage() {
           },
         }}
       />
-    </section>
+    </main>
   );
 }

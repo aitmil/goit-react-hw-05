@@ -3,4 +3,7 @@
   margin: 0 auto;
   text-align: center;
   background-color: #f1e8ed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

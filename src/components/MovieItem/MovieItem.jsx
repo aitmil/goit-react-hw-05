@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import css from "./MovieItem.module.css";
 
 export default function MovieDetails({ movie: { id, poster_path } }) {
   const location = useLocation();
@@ -8,6 +9,7 @@ export default function MovieDetails({ movie: { id, poster_path } }) {
   return (
     <Link to={`/movies/${id}`} state={location}>
       <img
+        className={css.img}
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
